@@ -1,0 +1,59 @@
+<div class="container-fluid">
+        <br>
+    <form >
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                                <mat-label>Select me</mat-label>
+                                <mat-select>
+                                  <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                                <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+                              </mat-form-field>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                                <mat-label>Select me</mat-label>
+                                <mat-select>
+                                  <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                                <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+                              </mat-form-field>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                        <mat-form-field appearance="legacy">
+                                <mat-label>Select me</mat-label>
+                                <mat-select>
+                                  <mat-option value="option">Option</mat-option>
+                                </mat-select>
+                                <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
+                              </mat-form-field>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                     
+                        <button mat-raised-button  color="warn" class="float-right">Download</button>
+                    </div>
+            </div>
+        </div>
+    </form>
+    <br>
+
+    <ngx-datatable [rows]="rows" class="material" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="'auto'" [loadingIndicator]="loadingIndicator" [reorderable]="reorderable" [columns]="columns"
+        [limit]="10">
+    </ngx-datatable>
+
+    <ng-template #targetMarkerTemplate let-class="class">
+        <div [ngClass]="class">
+            <div class="icon datatable-icon-down"></div>
+            <div class="icon datatable-icon-up"></div>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,15 @@
+.icon {
+    position: absolute;
+  }
+  .datatable-icon-down {
+    top: 0px;
+  }
+  .datatable-icon-up {
+    top: 40px;
+  }
+  .dragFromLeft .icon {
+    left: -13px;
+  }
+  button{
+      margin: 20px;;
+  }

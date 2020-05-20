@@ -1,0 +1,121 @@
+<h1 mat-dialog-title>Insert New Record</h1>
+<div mat-dialog-content>
+
+    <div class="row">
+        <div class="col">
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="tour">Tour</mat-radio-button>
+                <mat-radio-button value="Office">Office</mat-radio-button>
+                <mat-radio-button value="Holiday">Holiday</mat-radio-button>
+            </mat-radio-group>
+        </div>
+    </div>
+
+    <h3>Date & Time </h3>
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <br>
+
+    <mat-divider></mat-divider>
+    <h3>Place & Vehicle </h3>
+
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+    <h3>Auto Calculated </h3>
+
+    <div class="row">
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field appearance="legacy">
+                <mat-label>Legacy form field</mat-label>
+                <input matInput placeholder="Placeholder">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Hint</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>
