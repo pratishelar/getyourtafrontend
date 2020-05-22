@@ -8,6 +8,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 })
 export class SidenavbarComponent implements OnInit {
 
+  token = localStorage.getItem('token');
 
   @ViewChild('sidenav') sidenav: MatSidenav;
   isExpanded = true;

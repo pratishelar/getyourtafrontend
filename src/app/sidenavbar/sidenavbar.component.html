@@ -6,6 +6,11 @@
         <h1 class="example-app-name">Get Your TA</h1>
         <span class="example-spacer"></span>
 
+        <span class="nav-tool-items">
+            <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
+            <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+        </span>
+
         <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon"
             [matMenuTriggerFor]="notificationmenu">notifications</mat-icon>
         <mat-menu #notificationmenu="matMenu">
@@ -23,8 +28,8 @@
     </mat-toolbar-row>
 </mat-toolbar>
 
-<mat-sidenav-container class="example-container" autosize>
-    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+<mat-sidenav-container class="example-container"  autosize>
+    <mat-sidenav #sidenav *ngIf="token" class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
         (mouseleave)="mouseleave()">
         <mat-nav-list>
 
@@ -84,7 +89,7 @@
 
     <div class="example-sidenav-content">
         <div class="container-fluid">
-            <router-outlet></router-outlet>
+            <!-- <router-outlet></router-outlet> -->
 
         </div>
     </div>

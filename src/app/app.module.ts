@@ -23,6 +23,8 @@ import { SidenavbarComponent } from './sidenavbar/sidenavbar.component';
 import { SearchComponent } from './search/search.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { TaformComponent } from './taform/taform.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -30,6 +32,11 @@ import { environment } from '../environments/environment';
 
 import { FirebaseService } from './services/firebase.service';
 import { HttpClientModule } from '@angular/common/http';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import { AuthService } from './services/Auth.service';
+import { LandingpageComponent } from './landingpage/landingpage.component';
+import { HeaderComponent } from './landingpage/header/header.component';
+import { ErrorInterceptorProvider } from './services/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -44,7 +51,11 @@ import { HttpClientModule } from '@angular/common/http';
     DndDirective,
     SidenavbarComponent,
     SearchComponent,
-    TaformComponent
+    TaformComponent,
+    LoginComponent,
+    RegisterComponent,
+    LandingpageComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -60,13 +71,18 @@ import { HttpClientModule } from '@angular/common/http';
     NgxDatatableModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FlexLayoutModule
   ],
   exports: [
     AppMaterialModule,
     TaformComponent
   ],
-  providers: [FirebaseService],
+  providers: [
+    FirebaseService,
+    AuthService,
+    ErrorInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
