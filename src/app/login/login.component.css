@@ -37,7 +37,7 @@ body {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   z-index: 5;
-  max-width: 330px;
+  max-width: 40%;
 }
 .box.back {
   transform: scale(0.95);
@@ -75,13 +75,14 @@ body {
   width: 100%;
   display: block;
   font-weight: 700;
+  padding-bottom: 50px;
 }
 .login-wrapper mat-card-header mat-card-title {
   font-size: 30px;
   margin: 0;
 }
 .login-wrapper .mat-card {
-  padding: 40px 70px 50px;
+  /* padding: 40px 70px 50px; */
 }
 .login-wrapper .mat-stroked-button {
   border: 1px solid currentColor;
@@ -90,4 +91,9 @@ body {
 }
 .login-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
   padding: 0.8375em 0;
+}
+
+.mat-card-actions, .mat-card-subtitle, .mat-card-content {
+  display: block;
+  margin-bottom: 40px;
 }

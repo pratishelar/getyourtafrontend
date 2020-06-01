@@ -1,17 +1,18 @@
 <mat-toolbar color="warn" class="example-toolbar">
     <mat-toolbar-row>
-        <button mat-icon-button (click)="isExpanded = !isExpanded">
+        <button mat-icon-button *ngIf="loggedIn()" (click)="isExpanded = !isExpanded">
             <mat-icon>menu</mat-icon>
         </button>
-        <h1 class="example-app-name">Get Your TA</h1>
+        <h1 class="example-app-name" [routerLink]="['/landingpage']" routerLinkActive="router-link-active" >Get Your TA</h1>
+
         <span class="example-spacer"></span>
 
-        <span class="nav-tool-items">
-            <a mat-button routerLink="login" routerLinkActive="active">Log in</a>
-            <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+        <span *ngIf="!loggedIn()" class="nav-tool-items">
+            <a mat-button [routerLink]="['/login']" routerLinkActive="router-link-active" >Log in</a>
+            <a mat-button mat-raised-button [routerLink]="['/register']" routerLinkActive="router-link-active" >Register</a>
         </span>
 
-        <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon"
+        <mat-icon class="example-icon"  *ngIf="loggedIn()" aria-hidden="false" aria-label="Example heart icon"
             [matMenuTriggerFor]="notificationmenu">notifications</mat-icon>
         <mat-menu #notificationmenu="matMenu">
             <button mat-menu-item>1</button>
@@ -19,17 +20,17 @@
         </mat-menu>
 
 
-        <button mat-button [matMenuTriggerFor]="menu">Pratish <mat-icon>keyboard_arrow_down</mat-icon></button>
+        <button mat-button  *ngIf="loggedIn()" [matMenuTriggerFor]="menu">{{authService.decodedToken.unique_name}} <mat-icon>keyboard_arrow_down</mat-icon></button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>Setting</button>
-            <button mat-menu-item>Logout</button>
+            <button mat-menu-item [routerLink]="['/edit']" routerLinkActive="router-link-active" >Edit</button>
+            <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
 
     </mat-toolbar-row>
 </mat-toolbar>
 
 <mat-sidenav-container class="example-container"  autosize>
-    <mat-sidenav #sidenav *ngIf="token" class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+    <mat-sidenav #sidenav *ngIf="loggedIn()" class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
         (mouseleave)="mouseleave()">
         <mat-nav-list>
 
@@ -89,13 +90,13 @@
 
     <div class="example-sidenav-content">
         <div class="container-fluid">
-            <!-- <router-outlet></router-outlet> -->
+            <router-outlet></router-outlet>
 
         </div>
     </div>
 
 </mat-sidenav-container>
 
-<mat-toolbar color="warn">
+<!-- <mat-toolbar color="warn">
     <span class="example-app-name">Copyrights @ Get Your TA</span>
-</mat-toolbar>
+</mat-toolbar> -->

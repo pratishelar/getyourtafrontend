@@ -17,16 +17,17 @@ export class ErrorInterceptor implements HttpInterceptor {
 
                 if (error instanceof HttpErrorResponse) {
                     const applicationError = error.headers.get('Application-Error');
-
+                    // 500 type errors
                     if (applicationError) {
                         return throwError(applicationError);
                     }
+                    // server error
                     const serverError = error.error;
                     let modalStateErrors = '';
-                    if (serverError.errors && serverError.errors === 'object') {
+                    if (serverError.errors && typeof serverError.errors === 'object') {
                         for (const key in serverError.errors) {
                             if (serverError.errors[key]) {
-                                modalStateErrors += serverError.error[key] + '\n';
+                                modalStateErrors += serverError.errors[key] + '\n';
                             }
                         }
                     }

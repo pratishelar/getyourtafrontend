@@ -1,4 +1,4 @@
-<app-header></app-header>
+
 
 <div  class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
@@ -10,7 +10,7 @@
   
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="model.Name" name="Name" placeholder="Username">
+            <input matInput  required [(ngModel)]="model.Name" name="Name" placeholder="Username">
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
@@ -18,7 +18,7 @@
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
-            <input matInput [(ngModel)]="model.Password" name="Password" placeholder="Password">
+            <input matInput required [(ngModel)]="model.Password" name="Password" placeholder="Password">
           </mat-form-field>
   
         </mat-card-content>

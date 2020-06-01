@@ -35,8 +35,16 @@ import { HttpClientModule } from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AuthService } from './services/Auth.service';
 import { LandingpageComponent } from './landingpage/landingpage.component';
-import { HeaderComponent } from './landingpage/header/header.component';
+
 import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { UserEditResolver } from 'src/resolvers/user-edit.resolver';
+import { PreventUnsavedFormGuard } from './guards/prevent-unsaved-form.guard';
+
+export function tokenGetter(){
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -55,7 +63,7 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
     LoginComponent,
     RegisterComponent,
     LandingpageComponent,
-    HeaderComponent
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +80,14 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth']
+      }
+    })
   ],
   exports: [
     AppMaterialModule,
@@ -81,7 +96,9 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
   providers: [
     FirebaseService,
     AuthService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    UserEditResolver,
+    PreventUnsavedFormGuard
   ],
   bootstrap: [AppComponent]
 })

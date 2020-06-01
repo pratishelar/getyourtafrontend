@@ -1,0 +1,151 @@
+<br>
+<div class="container bootstrap snippet">
+
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+
+
+            <div class="text-center">
+                <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail"
+                    alt="avatar">
+                <h6>Upload a different photo...</h6>
+                <input type="file" class="text-center center-block file-upload">
+            </div>
+            <hr>
+
+            <ul class="list-group">
+                <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i></li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Last Active</strong></span> {{user.lastActive}}</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Account Created</strong></span> {{user.created}}</li>
+            </ul> 
+
+        </div>
+        <!--/col-3-->
+        <div class="col-sm-9">
+            <div *ngIf="editform.dirty" class="alwert alert-info">
+                <p><strong>Information</strong> "You have made the changes, Please save it.</p>
+
+            </div>
+            <form class="form" id="registrationForm" #editform="ngForm" (ngSubmit)="updateuser()">
+                <mat-tab-group>
+                    <mat-tab label="Personal">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="Name">
+                                    <h4>Name</h4>
+                                </label>
+                                <input type="text" class="form-control" [(ngModel)]= "user.name" name="name" id="name"
+                                    placeholder="Name" title="name">
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label for="gender">
+                                    <h4>Gender</h4>
+                                </label>
+                                <input type="text" class="form-control" [(ngModel)]= "user.gender" name="gender" id="gender"
+                                    placeholder="gender" title="gender">
+                            </div>
+
+                            <!-- <div class="col-xs-6">
+                                <label for="age">
+                                    <h4>Age</h4>
+                                </label>
+                                <input type="text" class="form-control" [(ngModel)]= "user.age" name="age" id="age"
+                                    placeholder="age" title="age">
+                            </div> -->
+
+                            <div class="col-xs-6">
+                                <label for="gradePay">
+                                    <h4>Grade pay</h4>
+                                </label>
+                                <input type="text" class="form-control" [(ngModel)]= "user.gradePay" name="gradePay" id="gradePay"
+                                    placeholder="gradePay" title="gradePay">
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label for="office">
+                                    <h4>Office City</h4>
+                                </label>
+                                <input type="text" class="form-control" [(ngModel)]= "user.office" name="office" id="office"
+                                    placeholder="office city" title="office">
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label for="officeName">
+                                    <h4>Office Name</h4>
+                                </label>
+                                <input type="text" class="form-control" [(ngModel)]= "user.officeName" name="officeName" id="officeName"
+                                    placeholder="officeName" title="officeName">
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Password">
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="Password">
+                                    <h4>Password</h4>
+                                </label>
+                                <input type="text" class="form-control" name="Password" id="Password"
+                                    placeholder="Password" title="enter your Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-6">
+                                <label for="ConfirmPassword">
+                                    <h4> Confirm Password</h4>
+                                </label>
+                                <input type="text" class="form-control" name="ConfirmPassword" id="ConfirmPassword"
+                                    placeholder="Confirm Password " title="Confirm your Password">
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Photos">
+                        <div class="container">
+                            <div class="row">
+                                <a href="https://unsplash.it/1200/768.jpg?image=251" data-toggle="lightbox"
+                                    data-gallery="gallery" class="col-md-4">
+                                    <img src="https://unsplash.it/600.jpg?image=251" class="img-fluid rounded">
+                                </a>
+                                <a href="https://unsplash.it/1200/768.jpg?image=252" data-toggle="lightbox"
+                                    data-gallery="gallery" class="col-md-4">
+                                    <img src="https://unsplash.it/600.jpg?image=252" class="img-fluid rounded">
+                                </a>
+                                <a href="https://unsplash.it/1200/768.jpg?image=253" data-toggle="lightbox"
+                                    data-gallery="gallery" class="col-md-4">
+                                    <img src="https://unsplash.it/600.jpg?image=253" class="img-fluid rounded">
+                                </a>
+                            </div>
+                            <div class="row">
+                                <a href="https://unsplash.it/1200/768.jpg?image=254" data-toggle="lightbox"
+                                    data-gallery="gallery" class="col-md-4">
+                                    <img src="https://unsplash.it/600.jpg?image=254" class="img-fluid rounded">
+                                </a>
+                                <a href="https://unsplash.it/1200/768.jpg?image=255" data-toggle="lightbox"
+                                    data-gallery="gallery" class="col-md-4">
+                                    <img src="https://unsplash.it/600.jpg?image=255" class="img-fluid rounded">
+                                </a>
+                                <a href="https://unsplash.it/1200/768.jpg?image=256" data-toggle="lightbox"
+                                    data-gallery="gallery" class="col-md-4">
+                                    <img src="https://unsplash.it/600.jpg?image=256" class="img-fluid rounded">
+                                </a>
+                            </div>
+                        </div>
+
+                    </mat-tab>
+                </mat-tab-group>
+
+                <button [disabled]= "!editform.dirty "  mat-raised-button color="primary" >Save</button>
+            </form>
+
+
+        </div>
+        <!--/tab-content-->
+
+    </div>
+    <!--/col-9-->
+</div>
+<!--/row-->
