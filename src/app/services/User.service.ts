@@ -22,11 +22,22 @@ export class UserService {
     return this.http.get<User[]>(this.baseUrl + 'UsersCrud');
   }
 
-  getUser(id): Observable<User> {
+  getUser(id: number): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'UsersCrud/' + id);
   }
 
-  UpdateUser(id, user): Observable<User> {
-    return this.http.put<User>(this.baseUrl + 'UsersCrud/' + id, user);
+  UpdateUser(id: number, user: User) {
+    return this.http.put(this.baseUrl + 'UsersCrud/' + id, user);
+  }
+
+  setMainPhoto(userId: number, id: number) {
+    return this.http.post(
+      this.baseUrl + 'users/' + userId + '/photos/' + id + '/setMain',
+      {}
+    );
+  }
+
+  deletePhoto(userId: number, id: number){
+    return this.http.delete(this.baseUrl +  'users/' + userId + '/photos/' + id);
   }
 }

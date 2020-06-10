@@ -1,7 +1,7 @@
 export interface Photo {
-  Id: number;
-  Url: string;
-  Description: StyleMedia;
-  DateAdded: Date;
-  IsMain: string;
+  id: number;
+  url: string;
+  description: StyleMedia;
+  dateAdded: Date;
+  isMain: boolean;
 }

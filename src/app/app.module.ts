@@ -41,6 +41,9 @@ import { EditUserComponent } from './edit-user/edit-user.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UserEditResolver } from 'src/resolvers/user-edit.resolver';
 import { PreventUnsavedFormGuard } from './guards/prevent-unsaved-form.guard';
+import { PhotoEditorComponent } from './edit-user/photo-editor/photo-editor.component';
+import { FileUploadModule } from 'ng2-file-upload';
+
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -63,7 +66,8 @@ export function tokenGetter(){
     LoginComponent,
     RegisterComponent,
     LandingpageComponent,
-    EditUserComponent
+    EditUserComponent,
+    PhotoEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -87,7 +91,8 @@ export function tokenGetter(){
         whitelistedDomains: ['localhost:5000'],
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
-    })
+    }),
+    FileUploadModule
   ],
   exports: [
     AppMaterialModule,

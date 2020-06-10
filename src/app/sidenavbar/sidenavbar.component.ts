@@ -12,7 +12,6 @@ import { User } from '../Models/User';
   styleUrls: ['./sidenavbar.component.css']
 })
 export class SidenavbarComponent implements OnInit {
-
   // token = localStorage.getItem('token');
 
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -20,12 +19,22 @@ export class SidenavbarComponent implements OnInit {
   showSubmenu = false;
   isShowing = false;
   showSubSubMenu = false;
+  photoUrl: string;
+ 
 
-  constructor(private router: Router, public authService: AuthService,
-              private userservice: UserService, private aliertify: AlertifyService) { }
+  constructor(
+    private router: Router,
+    public authService: AuthService,
+    private userservice: UserService,
+    private aliertify: AlertifyService
+  ) {}
 
   ngOnInit(): void {
+    this.authService.currentPhotoUrl.subscribe(
+      photoUrl => (this.photoUrl = photoUrl)
+    );
   }
+
 
   mouseenter() {
     if (!this.isExpanded) {
@@ -39,14 +48,16 @@ export class SidenavbarComponent implements OnInit {
     }
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.authService.decodedToken = null;
+    this.authService.currentUser = null;
     this.router.navigate(['/landingpage']);
+    this.aliertify.message('Logged out');
   }
 
   loggedIn() {
     return this.authService.loggedIn();
   }
-
- 
 }
