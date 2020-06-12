@@ -22,17 +22,24 @@ export class PhotoEditorComponent implements OnInit {
   response: string;
   currentMainPhoto: Photo;
 
-  constructor( private authservice: AuthService, private userService: UserService, private alertify: AlertifyService) {
-   }
+  constructor(
+    private authservice: AuthService,
+    private userService: UserService,
+    private alertify: AlertifyService
+  ) {}
 
   ngOnInit(): void {
     this.initializeUploader();
   }
 
-  initializeUploader(){
+  initializeUploader() {
     this.uploader = new FileUploader({
-      url: this.baseUrl + 'users/' + this.authservice.decodedToken.nameid + '/photos',
-      authToken : 'Bearer ' + localStorage.getItem('token'),
+      url:
+        this.baseUrl +
+        'users/' +
+        this.authservice.decodedToken.nameid +
+        '/photos',
+      authToken: 'Bearer ' + localStorage.getItem('token'),
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: true,
@@ -50,11 +57,10 @@ export class PhotoEditorComponent implements OnInit {
       //     });
       //   });
       // }
-
     });
 
     this.uploader.onSuccessItem = (item, response, status, Headers) => {
-      if ( response ){
+      if (response) {
         const res: Photo = JSON.parse(response);
         const photo = {
           id: res.id,
@@ -64,18 +70,28 @@ export class PhotoEditorComponent implements OnInit {
           description: res.description
         };
         this.photos.push(photo);
+        if (photo.isMain) {
+          this.authservice.changeMemberPhoto(photo.url);
+          this.authservice.currentUser.url = photo.url;
+          localStorage.setItem(
+            'user',
+            JSON.stringify(this.authservice.currentUser)
+          );
+        }
       }
       console.log(this.photos);
     };
 
-    this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
+    this.uploader.onAfterAddingFile = file => {
+      file.withCredentials = false;
+    };
 
     this.hasBaseDropZoneOver = false;
     this.hasAnotherDropZoneOver = false;
 
     this.response = '';
 
-    this.uploader.response.subscribe( res => this.response = res );
+    this.uploader.response.subscribe(res => (this.response = res));
     console.log(this.response);
   }
 
@@ -87,36 +103,50 @@ export class PhotoEditorComponent implements OnInit {
     this.hasAnotherDropZoneOver = e;
   }
 
-  setMainPhoto(photo: Photo){
+  setMainPhoto(photo: Photo) {
     console.log(this.photos);
-    this.userService.setMainPhoto(this.authservice.decodedToken.nameid, photo.id).subscribe( () =>{
-      console.log('successfully set to main');
-      this.currentMainPhoto = this.photos.filter(p => p.isMain === true)[0];
-      this.currentMainPhoto.isMain = false;
-      photo.isMain = true;
-      // this.getMemberPhotoChange.emit(photo.url);
-      this.authservice.changeMemberPhoto(photo.url);
-      this.authservice.currentUser.url = photo.url;
-      localStorage.setItem('user', JSON.stringify(this.authservice.currentUser));
-    }, error => {
-      this.alertify.error('error');
-    });
+    this.userService
+      .setMainPhoto(this.authservice.decodedToken.nameid, photo.id)
+      .subscribe(
+        () => {
+          console.log('successfully set to main');
+          this.currentMainPhoto = this.photos.filter(p => p.isMain === true)[0];
+          this.currentMainPhoto.isMain = false;
+          photo.isMain = true;
+          // this.getMemberPhotoChange.emit(photo.url);
+          this.authservice.changeMemberPhoto(photo.url);
+          this.authservice.currentUser.url = photo.url;
+          localStorage.setItem(
+            'user',
+            JSON.stringify(this.authservice.currentUser)
+          );
+        },
+        error => {
+          this.alertify.error('error');
+        }
+      );
   }
 
-  deletePhoto(id: number){
+  deletePhoto(id: number) {
     console.log(id);
     console.log(this.photos);
     this.alertify.confirm('Are you sure you want to delete this photo?', () => {
-      this.userService.deletePhoto(this.authservice.decodedToken.nameid, id).subscribe(() => {
-        this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
-        // this. photos = this.photos.filter(photo => photo.id !== id);
-        console.log(this.photos);
-        this.alertify.success('photo deleted');
-      }, error => {
-        this.alertify.error('Failed to delete photo');
-      });
+      this.userService
+        .deletePhoto(this.authservice.decodedToken.nameid, id)
+        .subscribe(
+          () => {
+            this.photos.splice(
+              this.photos.findIndex(p => p.id === id),
+              1
+            );
+            // this. photos = this.photos.filter(photo => photo.id !== id);
+            console.log(this.photos);
+            this.alertify.success('photo deleted');
+          },
+          error => {
+            this.alertify.error('Failed to delete photo');
+          }
+        );
     });
-
   }
-
 }

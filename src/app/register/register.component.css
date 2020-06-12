@@ -97,3 +97,7 @@ body {
   display: block;
   margin-bottom: 40px;
 }
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 26px;
+}
