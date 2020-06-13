@@ -19,6 +19,8 @@ import { User } from '../Models/User';
 export class RegisterComponent implements OnInit {
   user: User;
   registerForm: FormGroup;
+  hidepassword = true;
+  hideconfpassword = true;
 
   constructor(
     private authService: AuthService,
@@ -36,6 +38,7 @@ export class RegisterComponent implements OnInit {
       {
         gender: ['male'],
         name: ['', Validators.required],
+        email: ['', Validators.required],
         dateofbirth: [null, Validators.required],
         officename: ['', Validators.required],
         gradepay: ['', Validators.required],
@@ -71,26 +74,27 @@ export class RegisterComponent implements OnInit {
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value, null, 4));
 
     console.log(this.registerForm);
-    // if (this.registerForm.valid) {
-    //   this.user = Object.assign({}, this.registerForm.value);
-    // }
-    this.user = Object.assign({}, this.registerForm.value);
-    this.authService.register(this.user).subscribe(
-      () => {
-        console.log('Registration Successfull');
-        this.alertify.success('Registered successfully');
-        // this.router.navigate(['/login']);
-      },
-      error => {
-        console.log(error);
-        this.alertify.error(error);
-      },
-      () => {
-        this.authService.login(this.user).subscribe(() => {
-          this.router.navigate(['/dashboard']);
-        });
-      }
-    );
+    if (this.registerForm.valid) {
+      this.user = Object.assign({}, this.registerForm.value);
+
+      this.user = Object.assign({}, this.registerForm.value);
+      this.authService.register(this.user).subscribe(
+        () => {
+          console.log('Registration Successfull');
+          this.alertify.success('Registered successfully');
+          // this.router.navigate(['/login']);
+        },
+        error => {
+          console.log(error);
+          this.alertify.error(error);
+        },
+        () => {
+          this.authService.login(this.user).subscribe(() => {
+            this.router.navigate(['/dashboard']);
+          });
+        }
+      );
+    }
   }
 
   onReset() {

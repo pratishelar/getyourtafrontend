@@ -43,7 +43,7 @@ import { UserEditResolver } from 'src/resolvers/user-edit.resolver';
 import { PreventUnsavedFormGuard } from './guards/prevent-unsaved-form.guard';
 import { PhotoEditorComponent } from './edit-user/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
-
+import { TimeagoModule } from 'ngx-timeago';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -67,7 +67,7 @@ export function tokenGetter(){
     RegisterComponent,
     LandingpageComponent,
     EditUserComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -92,11 +92,13 @@ export function tokenGetter(){
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
     }),
-    FileUploadModule
+    FileUploadModule,
+    TimeagoModule.forRoot()
   ],
   exports: [
     AppMaterialModule,
-    TaformComponent
+    TaformComponent,
+    TimeagoModule
   ],
   providers: [
     FirebaseService,

@@ -5,6 +5,7 @@ import { UserService } from '../services/User.service';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/Auth.service';
 import { NgForm } from '@angular/forms';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 @Component({
   selector: 'app-edit-user',
@@ -16,6 +17,7 @@ export class EditUserComponent implements OnInit {
   @ViewChild('editform', { static: true}) editForm: NgForm;
   user: User;
   photoUrl: string;
+  live = true;
 
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any){

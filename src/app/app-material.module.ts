@@ -46,7 +46,7 @@ import {MatTreeModule} from '@angular/material/tree';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ ],
   imports: [
     A11yModule,
     ClipboardModule,

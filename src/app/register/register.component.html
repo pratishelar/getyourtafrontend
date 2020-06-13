@@ -7,109 +7,162 @@
     <form [formGroup]="registerForm" (ngSubmit)="register()" class="example-form">
 
       <label id="example-radio-group-label">I am </label>
-      <mat-radio-group aria-label="Select an option" formControlName="gender">
+      <mat-radio-group aria-label="Select an option" formControlName="gender" required>
         <mat-radio-button value="male">Male</mat-radio-button>
         <mat-radio-button value="female">Female</mat-radio-button>
       </mat-radio-group>
 
 
       <mat-card-content>
-        <mat-form-field class="example-full-width ">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name" placeholder="name">
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="User name" required>
 
-          <mat-error>
-            <div *ngIf="f.name.errors">
-              <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
-                <strong>required</strong> </span>
-            </div>
-          </mat-error>
+            <mat-error align="end">
+              <div *ngIf="f.name.errors">
+                <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                  <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
 
-        </mat-form-field>
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
+            <mat-error align="end">
+              <div *ngIf="f.email.errors">
+                <span *ngIf="!f.email.valid && f.email.touched && f.email.errors.required">
+                  Email <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
 
-        <mat-form-field class="example-full-width ">
-          <mat-label>Date of Birth</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="dateofbirth">
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateofbirth" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
 
-          <mat-error>
-            <div *ngIf="f.dateofbirth.errors">
-              <span *ngIf="!f.dateofbirth.valid && f.dateofbirth.touched && f.dateofbirth.errors.required">
-                date of birth <strong>required</strong> </span>
-            </div>
-          </mat-error>
-        </mat-form-field>
+            <mat-error align="end">
+              <div *ngIf="f.dateofbirth.errors">
+                <span *ngIf="!f.dateofbirth.valid && f.dateofbirth.touched && f.dateofbirth.errors.required">
+                  date of birth <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Office Name</mat-label>
+            <input matInput formControlName="officename" placeholder="Office Name" required>
+
+            <mat-error align="end">
+              <div *ngIf="f.officename.errors">
+                <span *ngIf="!f.officename.valid && f.officename.touched && f.officename.errors.required">
+                  Office Name <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <!-- <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Grade Pay</mat-label>
+            <input matInput formControlName="gradepay" placeholder=" Grade pay" required>
+
+            <mat-error>
+              <div *ngIf="f.gradepay.errors">
+                <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                  Grade Pay <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p> -->
+
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Grade Pay</mat-label>
+            <mat-select formControlName="gradepay" placeholder=" Grade pay" required>
+              <mat-option value="9900">9900</mat-option>
+              <mat-option value="6900">6900</mat-option>
+              <mat-option value="3300">3300</mat-option>
+            </mat-select>
+            <!-- <mat-hint align="end">Here's the dropdown arrow ^</mat-hint> -->
+
+            <mat-error align="end">
+              <div *ngIf="f.gradepay.errors">
+                <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                  Grade Pay <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Office City</mat-label>
+            <input matInput formControlName="office" placeholder=" office city" required>
+
+            <mat-error align="end">
+              <div *ngIf="f.office.errors">
+                <span *ngIf="!f.office.valid && f.office.touched && f.office.errors.required">
+                  office city <strong>required</strong> </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Enter your password</mat-label>
+            <input matInput formControlName="password" placeholder="Password"
+              [type]="hidepassword ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hidepassword = !hidepassword" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidepassword">
+              <mat-icon>{{hidepassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error align="end">
+              <div *ngIf="f.password.errors">
+                <span *ngIf="!f.password.valid && f.password.touched && f.password.errors.required"> password
+                  <strong>required</strong> </span>
+                <span
+                  *ngIf="!f.password.valid && f.password.touched && f.password.errors.minlength || f.password.errors.maxlength">
+                  Password must be between 4 to 8characters </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+
+        </p>
 
 
-        <mat-form-field class="example-full-width ">
-          <mat-label>Office Name</mat-label>
-          <input matInput formControlName="officename" placeholder="Office Name">
-
-          <mat-error>
-            <div *ngIf="f.officename.errors">
-              <span *ngIf="!f.officename.valid && f.officename.touched && f.officename.errors.required">
-                Office Name <strong>required</strong> </span>
-            </div>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width ">
-          <mat-label>Grade Pay</mat-label>
-          <input matInput formControlName="gradepay" placeholder=" Grade pay">
-
-          <mat-error>
-            <div *ngIf="f.gradepay.errors">
-              <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
-                Grade Pay <strong>required</strong> </span>
-            </div>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width ">
-          <mat-label>Office City</mat-label>
-          <input matInput formControlName="office" placeholder=" office city">
-
-          <mat-error>
-            <div *ngIf="f.office.errors">
-              <span *ngIf="!f.office.valid && f.office.touched && f.office.errors.required">
-                office city <strong>required</strong> </span>
-            </div>
-          </mat-error>
-        </mat-form-field>
-
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password" placeholder="Password">
-          <mat-error>
-            <div *ngIf="f.password.errors">
-              <span *ngIf="!f.password.valid && f.password.touched && f.password.errors.required"> password
-                <strong>required</strong> </span>
-              <span
-                *ngIf="!f.password.valid && f.password.touched && f.password.errors.minlength || f.password.errors.maxlength">
-                Password must be between 4 to 8characters </span>
-            </div>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="example-full-width">
-          <mat-label>Confirm Password</mat-label>
-          <input matInput formControlName="confirmpassword" placeholder="Confirm Password">
-          <mat-error>
-            <div *ngIf="f.confirmpassword.errors">
-              <span *ngIf="!f.confirmpassword.valid && f.confirmpassword.touched && f.confirmpassword.errors.required">
-                password <strong>required</strong> </span>
-              <span *ngIf="!f.confirmpassword.valid && f.confirmpassword.touched && f.confirmpassword.errors.mustMatch">
-                Password do not match </span>
-            </div>
-          </mat-error>
-
-        </mat-form-field>
-
-        <!-- <mat-form-field class="example-full-width">
-            <input matInput  formControlName="email" placeholder="Email">
-          </mat-form-field> -->
+        <p>
+          <mat-form-field appearance="fill" class="example-full-width">
+            <mat-label>Confirm your password</mat-label>
+            <input matInput formControlName="confirmpassword" placeholder="confirm password"
+              [type]="hideconfpassword ? 'password' : 'text'" required>
+            <button mat-icon-button matSuffix (click)="hideconfpassword = !hideconfpassword"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideconfpassword">
+              <mat-icon>{{hideconfpassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error align="end">
+              <div *ngIf="f.confirmpassword.errors">
+                <span
+                  *ngIf="!f.confirmpassword.valid && f.confirmpassword.touched && f.confirmpassword.errors.required">
+                  password
+                  <strong>required</strong> </span>
+                <span
+                  *ngIf="!f.confirmpassword.valid && f.confirmpassword.touched && f.confirmpassword.errors.mustMatch">
+                  Password do not match </span>
+              </div>
+            </mat-error>
+          </mat-form-field>
+        </p>
 
       </mat-card-content>
 
