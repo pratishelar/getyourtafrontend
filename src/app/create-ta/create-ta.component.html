@@ -45,7 +45,7 @@
                 <div [ngSwitch]="view">
                     <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
                         [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
-                        (eventClicked)="handleEvent('Clicked', $event.event)"
+                        (eventClicked)="editEvent($event.event)"
                         (eventTimesChanged)="eventTimesChanged($event)">
                     </mwl-calendar-month-view>
                     <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
@@ -75,10 +75,10 @@
                     <thead>
                         <tr>
                             <th>Title</th>
-                            <th>Primary color</th>
-                            <th>Secondary color</th>
+                            <th>color</th>
                             <th>Starts at</th>
                             <th>Ends at</th>
+                            <th>Total</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
@@ -86,30 +86,34 @@
                     <tbody>
                         <tr *ngFor="let event of events">
                             <td>
-                                <input type="text" class="form-control" [(ngModel)]="event.title"
+                                <input disabled type="text" class="form-control" [(ngModel)]="event.title"
                                     (keyup)="refresh.next()" />
                             </td>
                             <td>
-                                <input type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
+                                <input disabled  type="color" [(ngModel)]="event.color.primary" (change)="refresh.next()" />
                             </td>
+                            
                             <td>
-                                <input type="color" [(ngModel)]="event.color.secondary" (change)="refresh.next()" />
-                            </td>
-                            <td>
-                                <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
+                                <input disabled class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.start"
                                     (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true"
                                     [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
                                     placeholder="Not set" />
                             </td>
                             <td>
-                                <input class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
+                                <input disabled class="form-control" type="text" mwlFlatpickr [(ngModel)]="event.end"
                                     (ngModelChange)="refresh.next()" [altInput]="true" [convertModelValue]="true"
                                     [enableTime]="true" dateFormat="Y-m-dTH:i" altFormat="F j, Y H:i"
                                     placeholder="Not set" />
                             </td>
                             <td>
-                                <button class="btn btn-danger" (click)="deleteEvent(event)">
-                                    Delete
+                                    <input disabled class="form-control" type="text" [(ngModel)]="event.total"/>
+                             </td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" (click)="editEvent(event)">
+                                        <i class="fa fa-fw fa-pencil"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" (click)="deleteEvent(event)">
+                                        <i class="fa fa-fw fa-times"></i>
                                 </button>
                             </td>
                         </tr>
@@ -128,7 +132,7 @@
     <ng-template #modalContent let-close="close">
         <div class="modal-header">
             <h5 class="modal-title">Event action occurred</h5>
-            <button type="button" class="close" (click)="close()">
+            <button type="button" class="close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -143,7 +147,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary" (click)="close()">
+            <button type="button" class="btn btn-outline-secondary">
                 OK
             </button>
         </div>

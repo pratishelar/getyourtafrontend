@@ -40,10 +40,12 @@ import { ErrorInterceptorProvider } from './services/error.interceptor';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UserEditResolver } from 'src/resolvers/user-edit.resolver';
+import { EventResolver } from 'src/resolvers/event.resolver';
 import { PreventUnsavedFormGuard } from './guards/prevent-unsaved-form.guard';
 import { PhotoEditorComponent } from './edit-user/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { TimeagoModule } from 'ngx-timeago';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 export function tokenGetter(){
   return localStorage.getItem('token');
@@ -93,6 +95,7 @@ export function tokenGetter(){
       }
     }),
     FileUploadModule,
+    PaginationModule.forRoot(),
     TimeagoModule.forRoot()
   ],
   exports: [
@@ -105,6 +108,7 @@ export function tokenGetter(){
     AuthService,
     ErrorInterceptorProvider,
     UserEditResolver,
+    EventResolver,
     PreventUnsavedFormGuard
   ],
   bootstrap: [AppComponent]

@@ -1,45 +1,68 @@
 <div class="container-fluid">
-        <br>
-    <form >
+    <br>
+    <form>
         <div class="row">
-            <div class="col">
-                <div class="form-group">
-                        <mat-form-field appearance="legacy">
-                                <mat-label>Select me</mat-label>
-                                <mat-select>
-                                  <mat-option value="option">Option</mat-option>
-                                </mat-select>
-                                <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-                              </mat-form-field>
-                </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill" class="example-full-width ">
+                    <mat-label>Year</mat-label>
+                    <mat-select placeholder="From which city" required>
+                        <mat-option value="Pune">Pune</mat-option>
+                        <mat-option value="Mumbai">Mumbai</mat-option>
+                        <mat-option value="solapur">Solapur</mat-option>
+                    </mat-select>
+                    <mat-hint>Select the city source city</mat-hint>
+
+                    <!-- <mat-error align="end">
+                        <div *ngIf="f.gradepay.errors">
+                          <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                            Grade Pay <strong>required</strong> </span>
+                        </div>
+                      </mat-error> -->
+                </mat-form-field>
+
             </div>
-            <div class="col">
-                <div class="form-group">
-                        <mat-form-field appearance="legacy">
-                                <mat-label>Select me</mat-label>
-                                <mat-select>
-                                  <mat-option value="option">Option</mat-option>
-                                </mat-select>
-                                <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-                              </mat-form-field>
-                </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill" class="example-full-width ">
+                    <mat-label>Year</mat-label>
+                    <mat-select placeholder="From which city" required>
+                        <mat-option value="Pune">Pune</mat-option>
+                        <mat-option value="Mumbai">Mumbai</mat-option>
+                        <mat-option value="solapur">Solapur</mat-option>
+                    </mat-select>
+                    <mat-hint>Select the city source city</mat-hint>
+
+                    <!-- <mat-error align="end">
+                        <div *ngIf="f.gradepay.errors">
+                          <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                            Grade Pay <strong>required</strong> </span>
+                        </div>
+                      </mat-error> -->
+                </mat-form-field>
+
             </div>
-            <div class="col">
-                <div class="form-group">
-                        <mat-form-field appearance="legacy">
-                                <mat-label>Select me</mat-label>
-                                <mat-select>
-                                  <mat-option value="option">Option</mat-option>
-                                </mat-select>
-                                <mat-hint align="end">Here's the dropdown arrow ^</mat-hint>
-                              </mat-form-field>
-                </div>
+            <div class="col-md-3">
+                <mat-form-field appearance="fill" class="example-full-width ">
+                    <mat-label>Year</mat-label>
+                    <mat-select placeholder="From which city" required>
+                        <mat-option value="Pune">Pune</mat-option>
+                        <mat-option value="Mumbai">Mumbai</mat-option>
+                        <mat-option value="solapur">Solapur</mat-option>
+                    </mat-select>
+                    <mat-hint>Select the city source city</mat-hint>
+
+                    <!-- <mat-error align="end">
+                        <div *ngIf="f.gradepay.errors">
+                          <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                            Grade Pay <strong>required</strong> </span>
+                        </div>
+                      </mat-error> -->
+                </mat-form-field>
+
             </div>
-            <div class="col">
+            <div class="col-md-3">
                 <div class="form-group">
-                     
-                        <button mat-raised-button  color="warn" class="float-right">Download</button>
-                    </div>
+                    <button mat-raised-button color="warn" class="float-right">Download</button>
+                </div>
             </div>
         </div>
     </form>
@@ -56,4 +79,8 @@
             <div class="icon datatable-icon-up"></div>
         </div>
     </ng-template>
+
+    <pagination [boundaryLinks]="true" [totalItems]="77" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;">
+    </pagination>
 </div>

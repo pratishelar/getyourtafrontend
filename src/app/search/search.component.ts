@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/User.service';
+import { AlertifyService } from '../services/alertify.service';
+import { EventService } from '../services/Event.service';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/Auth.service';
 
 @Component({
   selector: 'app-search',
@@ -9,22 +14,31 @@ export class SearchComponent implements OnInit {
   loadingIndicator = true;
   reorderable = true;
 
-  rows = [
-    { name: 'Austin', gender: 'Male', company: 'Swimlane' },
-    { name: 'Dany', gender: 'Male', company: 'KFC' },
-    { name: 'Molly', gender: 'Female', company: 'Burger King' },
-  ];
-  columns = [
-    { prop: 'name' },
-    { name: 'Gender' },
-    { name: 'Company' }
-  ];
+  rows = [];
+  columns = [{ prop: 'id' }, { name: 'title' }, { name: 'start' },
+   { name: 'end' }, { name: 'source' }, { name: 'destination' },
+   { name: 'stayType' }, { name: 'vehicle' }, { name: 'da' },
+    { name: 'daRate' }, { name: 'daPercent' }, { name: 'fair' },
+    { name: 'km' }, { name: 'totalTime' }, { name: 'total' }];
 
-  constructor() {
+  constructor(
+    private userservice: UserService,
+    private aliertify: AlertifyService,
+    private eventservice: EventService,
+    private route: ActivatedRoute,
+    private authservice: AuthService
+  ) {
     this.loadingIndicator = false;
-   }
-
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.loadEvents();
+  }
+
+  loadEvents() {
+    this.route.data.subscribe(data => {
+      this.rows = data['event'];
+      console.log(this.rows);
+    });
+  }
 }

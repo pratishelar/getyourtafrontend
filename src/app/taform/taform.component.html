@@ -1,121 +1,246 @@
 <h1 mat-dialog-title>Insert New Record</h1>
 <div mat-dialog-content>
 
+
+
     <div class="row">
-        <div class="col">
-            <mat-radio-group aria-label="Select an option">
+        <div class="col-md-12">
+            <mat-radio-group [(ngModel)]="data.eventType" aria-label="Select an option">
                 <mat-radio-button value="tour">Tour</mat-radio-button>
-                <mat-radio-button value="Office">Office</mat-radio-button>
-                <mat-radio-button value="Holiday">Holiday</mat-radio-button>
+                <mat-radio-button value="office">Office</mat-radio-button>
+                <mat-radio-button value="holiday">Holiday</mat-radio-button>
             </mat-radio-group>
         </div>
     </div>
 
-    <h3>Date & Time </h3>
     <div class="row">
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
+        <div class="col-md-10">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Title</mat-label>
+                <input matInput [(ngModel)]="data.title" placeholder="Title of Event" required>
+
+                <!-- <mat-error align="end">
+                          <div *ngIf="f.name.errors">
+                            <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                              <strong>required</strong> </span>
+                          </div>
+                        </mat-error> -->
             </mat-form-field>
         </div>
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
+        <div class="col-md-2">
+            <input class="form-control colortextbox"  type="color" *ngIf="data.id" [(ngModel)]="data.color.primary" />
+            <input class="form-control colortextbox"  type="color" *ngIf="!data.id" [(ngModel)]="data.color" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Source Place</mat-label>
+                <mat-select [(ngModel)]="data.source" placeholder="From which city" required>
+                    <mat-option value="Pune">Pune</mat-option>
+                    <mat-option value="Mumbai">Mumbai</mat-option>
+                    <mat-option value="solapur">Solapur</mat-option>
+                </mat-select>
+                <mat-hint>Select the city source city</mat-hint>
+
+                <!-- <mat-error align="end">
+                    <div *ngIf="f.gradepay.errors">
+                      <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                        Grade Pay <strong>required</strong> </span>
+                    </div>
+                  </mat-error> -->
+            </mat-form-field>
+
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Destination Place</mat-label>
+                <mat-select [(ngModel)]="data.destination" placeholder="To which city" required>
+                    <mat-option value="Pune">Pune</mat-option>
+                    <mat-option value="Mumbai">Mumbai</mat-option>
+                    <mat-option value="solapur">Solapur</mat-option>
+                </mat-select>
+                <mat-hint>Select the destination city</mat-hint>
+
+                <!-- <mat-error align="end">
+                            <div *ngIf="f.gradepay.errors">
+                              <span *ngIf="!f.gradepay.valid && f.gradepay.touched && f.gradepay.errors.required">
+                                Grade Pay <strong>required</strong> </span>
+                            </div>
+                          </mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+
+    <br>
+    <mat-divider></mat-divider>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Start Date</mat-label>
+                <input matInput [matDatepicker]="start" [(ngModel)]="data.start" required>
+                <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                <mat-datepicker #start></mat-datepicker>
+                <mat-hint>Select start date</mat-hint>
+
+                <!-- <mat-error align="end">
+                          <div *ngIf="f.dateofbirth.errors">
+                            <span *ngIf="!f.dateofbirth.valid && f.dateofbirth.touched && f.dateofbirth.errors.required">
+                              date of birth <strong>required</strong> </span>
+                          </div>
+                        </mat-error> -->
+            </mat-form-field>
+
+        </div>
+        <div class="col-md-6">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>End Date</mat-label>
+                <input matInput [matDatepicker]="end" [(ngModel)]="data.end" required>
+                <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                <mat-datepicker #end></mat-datepicker>
+                <mat-hint>Select end date</mat-hint>
+
+                <!-- <mat-error align="end">
+                                  <div *ngIf="f.dateofbirth.errors">
+                                    <span *ngIf="!f.dateofbirth.valid && f.dateofbirth.touched && f.dateofbirth.errors.required">
+                                      date of birth <strong>required</strong> </span>
+                                  </div>
+                                </mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+
+    <br>
+    <mat-divider></mat-divider>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Vehicle</mat-label>
+                <input matInput [(ngModel)]="data.vehicle" placeholder="Select Vehicle" required>
+                <mat-hint>Select vehicle used</mat-hint>
+                <!-- <mat-error align="end">
+                                  <div *ngIf="f.name.errors">
+                                    <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                      <strong>required</strong> </span>
+                                  </div>
+                                </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Fair</mat-label>
+                <input matInput [(ngModel)]="data.fair" placeholder="Enter Fair" required>
+                <mat-hint>Enter Fair</mat-hint>
+                <!-- <mat-error align="end">
+                                  <div *ngIf="f.name.errors">
+                                    <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                      <strong>required</strong> </span>
+                                  </div>
+                                </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Kilometer</mat-label>
+                <input matInput [(ngModel)]="data.km" placeholder="Enter Kilometer" required>
+                <mat-hint>Enter distance in KM</mat-hint>
+                <!-- <mat-error align="end">
+                                  <div *ngIf="f.name.errors">
+                                    <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                      <strong>required</strong> </span>
+                                  </div>
+                                </mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+
+    <br>
+    <mat-divider></mat-divider>
+
+    <div class="row">
+        <div class="col -md-12">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Stay Type</mat-label>
+                <input matInput [(ngModel)]="data.stayType" placeholder="Stay Type" required>
+
+                <!-- <mat-error align="end">
+                              <div *ngIf="f.name.errors">
+                                <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                  <strong>required</strong> </span>
+                              </div>
+                            </mat-error> -->
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class="row">
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>DA</mat-label>
+                <input matInput [(ngModel)]="data.da" placeholder="Enter DA" required>
+                <mat-hint>Enter DA</mat-hint>
+                <!-- <mat-error align="end">
+                                      <div *ngIf="f.name.errors">
+                                        <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                          <strong>required</strong> </span>
+                                      </div>
+                                    </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>DA Rate</mat-label>
+                <input matInput [(ngModel)]="data.daRate" placeholder="Enter DA Rate" required>
+                <mat-hint>Enter DA Rate</mat-hint>
+                <!-- <mat-error align="end">
+                                      <div *ngIf="f.name.errors">
+                                        <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                          <strong>required</strong> </span>
+                                      </div>
+                                    </mat-error> -->
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>DA Percent</mat-label>
+                <input matInput [(ngModel)]="data.daPercent" placeholder="Enter DA Percent" required>
+                <mat-hint>Enter DA Percent</mat-hint>
+                <!-- <mat-error align="end">
+                                      <div *ngIf="f.name.errors">
+                                        <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                          <strong>required</strong> </span>
+                                      </div>
+                                    </mat-error> -->
             </mat-form-field>
         </div>
     </div>
     <br>
-
     <mat-divider></mat-divider>
-    <h3>Place & Vehicle </h3>
+
 
     <div class="row">
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-    </div>
+        <div class="col -md-12">
+            <mat-form-field appearance="fill" class="example-full-width ">
+                <mat-label>Total Amount</mat-label>
+                <input matInput [(ngModel)]="data.total" placeholder="Total Amount" required>
 
-    <div class="row">
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-    </div>
-
-    <mat-divider></mat-divider>
-    <h3>Auto Calculated </h3>
-
-    <div class="row">
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
-            </mat-form-field>
-        </div>
-        <div class="col">
-            <mat-form-field appearance="legacy">
-                <mat-label>Legacy form field</mat-label>
-                <input matInput placeholder="Placeholder">
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Hint</mat-hint>
+                <!-- <mat-error align="end">
+                              <div *ngIf="f.name.errors">
+                                <span *ngIf="!f.name.valid && f.name.touched && f.name.errors.required"> Name
+                                  <strong>required</strong> </span>
+                              </div>
+                            </mat-error> -->
             </mat-form-field>
         </div>
     </div>
 
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="AddEvent()">ok </button>
+    <button mat-button [mat-dialog-close] cdkFocusInitial>Cancel</button>
 </div>
